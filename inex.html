@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundamentos DevOps | Oyunde</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #1f1f1f;
+      --secondary-color: #e0e0e0;
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --font-family: 'Montserrat', sans-serif;
+      --section-padding: 4rem 2rem;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-family); background-color: var(--bg-color); color: var(--secondary-color); }
+    header { background-color: var(--primary-color); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 40px; margin-right: 0.5rem; }
+    .logo span { color: var(--secondary-color); font-size: 1.25rem; font-weight: 700; }
+    nav ul { list-style: none; display: flex; }
+    nav ul li { margin-left: 1.5rem; }
+    nav ul li a { text-decoration: none; color: var(--secondary-color); font-weight: 700; }
+    .menu-toggle { display: none; cursor: pointer; }
+    .menu-toggle span { width: 25px; height: 3px; background-color: var(--secondary-color); margin: 4px 0; }
+    section { padding: var(--section-padding); }
+    .section-title { font-size: 2rem; color: var(--secondary-color); margin-bottom: 1rem; text-align: center; }
+    .section-content { max-width: 800px; margin: 0 auto; line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .card { background: var(--card-bg); padding: 1.5rem; border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 6px; }
+    .card h3 { margin-bottom: 0.5rem; color: var(--secondary-color); }
+    ul { margin-top: 1rem; padding-left: 1.2rem; }
+    ul li { margin-bottom: 0.5rem; }
+    @media (max-width: 768px) {
+      nav ul { flex-direction: column; background: var(--primary-color); position: absolute; top: 60px; right: 0; width: 200px; display: none; }
+      nav ul.show { display: flex; }
+      nav ul li { margin: 1rem 0; }
+      .menu-toggle { display: flex; flex-direction: column; }
+    }
+    a.btn { display: inline-block; background-color: var(--secondary-color); color: var(--primary-color); padding: 0.75rem 1.5rem; text-decoration: none; font-weight: 700; border-radius: 4px; transition: opacity 0.3s; }
+    a.btn:hover { opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="image-removebg-preview (1).png" alt="Oyunde Logo">
+      <span>Oyunde DevOps</span>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <ul id="nav-list">
+        <li><a href="#cultura">Cultura</a></li>
+        <li><a href="#automatizacion">Automatización</a></li>
+        <li><a href="#ci">CI</a></li>
+        <li><a href="#cd">CD</a></li>
+        <li><a href="#monitorizacion">Monitorización</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="intro">
+    <h1 class="section-title">Fundamentos de DevOps</h1>
+    <p class="section-content">DevOps es una filosofía y conjunto de prácticas que unifica el desarrollo de software (Dev) y las operaciones de TI (Ops), mejorando la colaboración, la entrega continua y la estabilidad de los sistemas.</p>
+  </section>
+
+  <section id="cultura">
+    <h2 class="section-title">1. Cultura y Colaboración</h2>
+    <div class="section-content">
+      <p>La base de DevOps es una cultura de confianza y responsabilidad compartida. Equipos multidisciplinares trabajan juntos, eliminando silos y fomentando la comunicación continua.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Comunicación Abierta</h3>
+          <p>Uso de canales compartidos (chat, wikis) para transparencia.</p>
+        </div>
+        <div class="card">
+          <h3>Responsabilidad</h3>
+          <p>Todos son dueños del ciclo de vida del software.</p>
+        </div>
+        <div class="card">
+          <h3>Mejora Continua</h3>
+          <p>Cultura de feedback constante y retrospectives regulares.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="automatizacion">
+    <h2 class="section-title">2. Automatización</h2>
+    <div class="section-content">
+      <p>Automatizar tareas repetitivas reduce errores y libera tiempo para innovación. Desde el aprovisionamiento de infraestructuras hasta los despliegues.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Infraestructura como Código</h3>
+          <p>Definir y versionar infraestructura con herramientas como Terraform o Ansible.</p>
+        </div>
+        <div class="card">
+          <h3>Scripting</h3>
+          <p>Uso de scripts para tareas rutinarias: backups, configuraciones, etc.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ci">
+    <h2 class="section-title">3. Integración Continua (CI)</h2>
+    <div class="section-content">
+      <p>CI es la práctica de integrar cambios de código frecuentemente en un repositorio compartido, validándolos con builds y pruebas automatizadas.</p>
+      <ul>
+        <li>Build automatizado al hacer "push".</li>
+        <li>Pruebas unitarias y de integración.</li>
+        <li>Feedback rápido en caso de fallos.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="cd">
+    <h2 class="section-title">4. Entrega Continua (CD)</h2>
+    <div class="section-content">
+      <p>CD extiende CI, automatizando despliegues a entornos de pruebas y producción con mínima intervención manual.</p>
+      <ul>
+        <li>Canary releases o blue-green deployments.</li>
+        <li>Rollback automático ante errores.</li>
+        <li>Entrega de valor rápida y segura.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="monitorizacion">
+    <h2 class="section-title">5. Monitorización y Feedback</h2>
+    <div class="section-content">
+      <p>Obtener métricas y logs en tiempo real para anticipar problemas y optimizar sistemas.</p>
+      <ul>
+        <li>Monitorización de rendimiento (APM).</li>
+        <li>Alertas y dashboards.</li>
+        <li>Análisis postmortem para incidentes.</li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-list').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
